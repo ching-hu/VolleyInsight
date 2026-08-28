@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="VolleyInsight User Manual — team management, player development, rotations, practice planning, tournament management, referee tools, paperwork, and guided help.">
+<link rel="icon" href="data:,">
+<title>VolleyInsight User Manual</title>
+<style>
+:root {
+  --blue:#071a34;
+  --blue2:#10284a;
+  --red:#4a101c;
+  --red2:#2e0c16;
+  --panel:rgba(11,20,34,.88);
+  --panel2:rgba(255,255,255,.075);
+  --text:#f5f7fb;
+  --muted:#c9d0dd;
+  --line:rgba(255,255,255,.14);
+  --green:#55d67a;
+  --warn:#ffc857;
+  --danger:#ff6b6b;
+  --link:#8dc8ff;
+  --max:1160px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:#091524}
+body{margin:0;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;line-height:1.55;background:linear-gradient(90deg,var(--blue) 0%,#171c3e 48%,var(--red2) 100%);min-height:100vh}
+a{color:var(--link)}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid #9ed1ff;outline-offset:3px}
+.skip-link{position:fixed;left:16px;top:12px;z-index:1000;padding:10px 14px;background:#fff;color:#071a34;border-radius:9px;transform:translateY(-160%)}
+.skip-link:focus{transform:translateY(0)}
+header.hero{padding:52px 24px 34px;border-bottom:1px solid var(--line)}
+.hero-inner{max-width:var(--max);margin:auto}
+.brand{display:flex;align-items:center;gap:16px}
+.brand-ball{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;font-size:34px;background:conic-gradient(#d72534 0 30%,#f6f6f2 30% 62%,#1e5aa8 62% 100%);border:2px solid rgba(255,255,255,.5);box-shadow:inset 0 0 18px rgba(0,0,0,.28)}
+h1{font-size:clamp(34px,5vw,56px);line-height:1.05;margin:0}
+.tagline{margin:10px 0 0;color:var(--muted);font-size:18px}
+.meta{margin-top:18px;font-size:14px;color:var(--muted)}
+.layout{max-width:var(--max);margin:auto;display:grid;grid-template-columns:270px minmax(0,1fr);gap:30px;padding:28px 24px 70px}
+nav.toc{position:sticky;top:20px;align-self:start;background:rgba(8,16,29,.78);border:1px solid var(--line);border-radius:18px;padding:16px;backdrop-filter:blur(14px)}
+nav.toc strong{display:block;margin:4px 8px 10px}
+nav.toc a{display:block;color:var(--muted);text-decoration:none;padding:7px 8px;border-radius:9px;font-size:14px}
+nav.toc a:hover{background:var(--panel2);color:#fff}
+main{min-width:0}
+section{scroll-margin-top:18px;margin-bottom:54px}
+h2{font-size:30px;margin:0 0 14px;border-bottom:1px solid var(--line);padding-bottom:9px}
+h3{font-size:21px;margin:28px 0 8px}
+h4{font-size:17px;margin:20px 0 6px}
+p,li{color:#eef2f8}
+.note,.tip,.warning{border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:16px 0;background:var(--panel2)}
+.note strong,.tip strong,.warning strong{color:#fff}
+.tip{border-left:4px solid var(--green)}
+.warning{border-left:4px solid var(--warn)}
+.steps{counter-reset:step;list-style:none;padding:0}
+.steps li{counter-increment:step;margin:12px 0;padding:12px 14px 12px 48px;background:var(--panel2);border-radius:12px;position:relative}
+.steps li:before{content:counter(step);position:absolute;left:14px;top:11px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#12213b;font-weight:700;font-size:13px}
+.kbd{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:rgba(255,255,255,.12);border:1px solid var(--line);padding:1px 6px;border-radius:6px}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+figure.actual-shot{margin:20px 0 28px} figure.actual-shot img{display:block;width:100%;max-width:100%;height:auto;margin:auto;border-radius:18px;border:1px solid var(--line);box-shadow:0 12px 34px rgba(0,0,0,.28);background:#071a34}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;margin:16px 0}
+table{width:100%;border-collapse:collapse;background:rgba(7,15,28,.46)}
+th,td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:#fff;background:rgba(255,255,255,.07)}
+td{color:#e5eaf3}
+code{color:#d9efff}
+footer{border-top:1px solid var(--line);padding:30px 24px 54px;color:var(--muted)}
+.footer-inner{max-width:var(--max);margin:auto}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media(max-width:820px){
+  .layout{grid-template-columns:1fr;padding-left:17px;padding-right:17px}
+  nav.toc{position:relative;top:auto}
+  header.hero{padding-left:17px;padding-right:17px}
+  figure.actual-shot img{border-radius:12px}
+}
+@media print{
+  body{background:#fff;color:#111}
+  header.hero,nav.toc{background:#fff;color:#111}
+  .layout{display:block}
+  nav.toc{position:static;border:1px solid #ccc}
+  h1,h2,h3,h4,p,li,td,th,.meta,.tagline,figcaption{color:#111}
+  section{break-inside:auto}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to manual</a>
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div class="brand">
+      <div class="brand-ball" aria-hidden="true"></div>
+      <div>
+        <h1>VolleyInsight User Manual</h1>
+        <p class="tagline">A practical guide to managing your volleyball team from practice through tournament day.</p>
+      </div>
+    </div>
+    <div class="meta">Verified against VolleyInsight 0.1 (build 1) • iPadOS Simulator 26.5 • August 27, 2026</div>
+  </div>
+</header>
+
+<div class="layout">
+<nav class="toc" aria-label="Manual contents">
+  <strong>Contents</strong>
+  <a href="#overview">1. Overview</a>
+  <a href="#getting-started">2. Getting Started</a>
+  <a href="#teams">3. Teams & Rosters</a>
+  <a href="#development">4. Player Development</a>
+  <a href="#rotation">5. Rotation Manager</a>
+  <a href="#practice">6. Practice &amp; Drills</a>
+  <a href="#tournament">7. Tournament Manager</a>
+  <a href="#referee">8. Referee Tool</a>
+  <a href="#paperwork">9. Paperwork</a>
+  <a href="#help">10. Help & Learning</a>
+  <a href="#settings">11. Settings & Data</a>
+  <a href="#matchday">12. Match-Day Workflow</a>
+  <a href="#troubleshooting">13. Troubleshooting</a>
+  <a href="#privacy">14. Privacy & Support</a>
+</nav>
+
+<main id="main-content" tabindex="-1">
+<section id="overview">
+<h2>1. Overview</h2>
+<p><strong>VolleyInsight</strong> is designed as a volleyball team operating system for coaches. It brings roster management, player development, rotation planning, practice execution, tournament preparation, live referee/scoring workflows, and volleyball paperwork into one app.</p>
+
+<div class="tip"><strong>Best way to learn:</strong> choose <strong>Quick Tour</strong> on first launch or open <strong>Learn</strong> from the Main Menu. Tutorials are replayable and do not block app features.</div>
+
+<h3>Core workflow</h3>
+<p>VolleyInsight is designed around a connected coaching workflow:</p>
+<p><strong>Practice → Measure → Player Development → Build Lineup → Rotation Configuration → Tournament → Referee / Scoring → Paperwork → Review → Repeat</strong></p>
+
+<h3>Interface conventions</h3>
+<div class="table-wrap"><table>
+<tr><th>Visual / control</th><th>Meaning</th></tr>
+<tr><td>Green</td><td>Active, ready, enabled, or successful state.</td></tr>
+<tr><td>Red</td><td>Destructive action, error, or stop condition.</td></tr>
+<tr><td>Orange / yellow</td><td>Warning or attention required.</td></tr>
+<tr><td>Gray</td><td>Inactive or secondary state.</td></tr>
+<tr><td>Learn / tutorial spotlight</td><td>Guided help attached to the current production screen.</td></tr>
+<tr><td>Volleyball next to a team</td><td>That team is the current serving team in scoring views.</td></tr>
+</table></div>
+</section>
+
+<section id="getting-started">
+<h2>2. Getting Started</h2>
+<h3>Main Menu</h3>
+<p>The Main Menu is the top-level navigation hub. On both iPhone and iPad it is intended to use a clear single-column layout so each major workflow is easy to find.</p>
+
+<figure class="actual-shot" id="shot-main-menu" data-shot-id="main-menu" data-filename="01-main-menu-ipad.png">
+  <img src="screenshots/01-main-menu-ipad.png" alt="Main Menu on iPad showing the VolleyInsight brand and six primary workflows." loading="lazy" decoding="async">
+  <figcaption>Main Menu — the single-column hub for teams, players, rotations, practice, tournaments, and referee scoring.</figcaption>
+</figure>
+
+<h3>First launch</h3>
+<p>On a fresh installation, first launch offers <strong>Create My Team</strong>, <strong>Quick Tour</strong>, and <strong>Skip</strong>. The tour is optional and remains available later from <strong>Learn</strong>.</p>
+
+<h3>About the documentation data</h3>
+<p>Every screen in this manual was captured from the current app using an isolated, in-memory synthetic dataset. The visible <strong>DEMO</strong> banner belongs to that documentation session; the production build does not currently expose a public “Explore Demo” entry point. Use <strong>Quick Tour</strong> or <strong>Learn</strong> for user-facing guidance.</p>
+
+<figure class="actual-shot" id="shot-demo-mode" data-shot-id="demo-mode" data-filename="02-explore-demo.png">
+  <img src="screenshots/02-explore-demo.png" alt="Isolated documentation dataset on the Main Menu with the DEMO banner and synthetic VolleyInsight Demo U14 team." loading="lazy" decoding="async">
+  <figcaption>Documentation dataset — synthetic information keeps public screenshots separate from user data.</figcaption>
+</figure>
+</section>
+
+<section id="teams">
+<h2>3. Teams & Rosters</h2>
+<h3>Manage Teams</h3>
+<p>Use <strong>Manage Teams</strong> to create and maintain the teams you coach. Functional submenu screens intentionally prioritize content over repeated branding.</p>
+
+<figure class="actual-shot" id="shot-manage-teams" data-shot-id="manage-teams" data-filename="03-manage-teams.png">
+  <img src="screenshots/03-manage-teams.png" alt="Manage Teams list showing the synthetic VolleyInsight Demo U14 team." loading="lazy" decoding="async">
+  <figcaption>Manage Teams — create, select, share, and maintain team records.</figcaption>
+</figure>
+
+<h3>Create or edit a team</h3>
+<ol class="steps">
+<li>Open <strong>Manage Teams</strong>.</li>
+<li>Create a team or select an existing team.</li>
+<li>Enter the team name and other available team metadata.</li>
+<li>Save changes before returning to dependent workflows such as Rotation Manager or Tournament Manager.</li>
+</ol>
+
+<h3>Roster management</h3>
+<p>The roster is the source for current team membership. Player selectors in active collection workflows resolve the current roster: newly added players become selectable, while removed players are not offered for new collection work.</p>
+
+<figure class="actual-shot" id="shot-team-detail" data-shot-id="team-detail" data-filename="04-team-detail.png">
+  <img src="screenshots/04-team-detail.png" alt="Player Manager roster grid for the synthetic VolleyInsight Demo U14 team." loading="lazy" decoding="async">
+  <figcaption>Roster — current synthetic players, jersey numbers, roles, and availability.</figcaption>
+</figure>
+
+<h3>Player profiles</h3>
+<p>Player records include jersey number, role/position, availability, development measurements, observation history, a progress-report export, and role-aware decision tools. Names and jersey numbers are display fields; the app preserves each player as a distinct identity.</p>
+
+<figure class="actual-shot" id="shot-player-manager" data-shot-id="player-manager" data-filename="05-player-manager.png">
+  <img src="screenshots/05-player-manager.png" alt="Synthetic player profile for Sam Rivera with Volleyball Development controls." loading="lazy" decoding="async">
+  <figcaption>Player profile — identity, availability, development entry points, reports, and decision tools.</figcaption>
+</figure>
+
+<div class="warning"><strong>Historical data:</strong> removing a player from the current roster does not make that player available for new work; saved observations and completed match records retain their historical context.</div>
+</section>
+
+<section id="development">
+<h2>4. Player Development</h2>
+<p>Player Development is used to record measurements and volleyball skill observations, review trends, and support role-aware lineup decisions.</p>
+
+<h3>Development metrics</h3>
+<p>Depending on player role and available observations, development views may include measures such as Height, Standing Touch, Jump Touch, Vertical, Serve-In %, Target Serve %, Pressure Serve %, Serve Receive Average, 3-Pass %, Playable Pass %, Attack-In %, Attack Target %, Setting Accuracy, Dig-to-Target %, and Block Success.</p>
+
+<figure class="actual-shot" id="shot-player-development" data-shot-id="player-development" data-filename="06-player-development.png">
+  <img src="screenshots/06-player-development.png" alt="Serve Receive history for synthetic player Sam Rivera with average and attempt count." loading="lazy" decoding="async">
+  <figcaption>Development history — interpret current values and trends together with attempts and context.</figcaption>
+</figure>
+
+<h3>Local Collection</h3>
+<p>Local Collection lets the device operator collect player observations using one or more Data Cards.</p>
+<ol class="steps">
+<li>Open or resume the appropriate collection/evaluation session.</li>
+<li>Choose <strong>Add Data Card</strong>.</li>
+<li>The app creates the new card and scrolls it into view.</li>
+<li>Select a player from the team's current roster.</li>
+<li>Select the metric to collect.</li>
+<li>Use the gestures/instructions shown on the Data Card to record attempts and successes.</li>
+</ol>
+
+<figure class="actual-shot" id="shot-local-collection" data-shot-id="local-collection" data-filename="07-local-collection.png">
+  <img src="screenshots/07-local-collection.png" alt="Local Collection host workspace with independent synthetic-player Data Cards." loading="lazy" decoding="async">
+  <figcaption>Local Collection — each Data Card can claim a player and metric independently.</figcaption>
+</figure>
+
+<figure class="actual-shot" id="shot-add-data-card" data-shot-id="add-data-card" data-filename="08-add-data-card.png">
+  <img src="screenshots/08-add-data-card.png" alt="Local Collection after a third Data Card was added and revealed." loading="lazy" decoding="async">
+  <figcaption>Add Data Card — the new card is brought into view for immediate setup.</figcaption>
+</figure>
+
+<div class="tip"><strong>Roster synchronization:</strong> an active collection session uses the team's current roster for new player selection; adding a player does not require recreating the session.</div>
+
+<h3>Collaborative collection</h3>
+<p>When available, collaborative evaluation allows a head-coach device to act as the authoritative host while additional nearby devices collect observations for different players or metrics. Remote collection is intended to preserve collector identity and observation provenance.</p>
+
+<figure class="actual-shot" id="shot-collaborative-collection" data-shot-id="collaborative-collection" data-filename="09-collaborative-collection.png">
+  <img src="screenshots/09-collaborative-collection.png" alt="Collaborative Data Collection session with three cards and host synchronization status." loading="lazy" decoding="async">
+  <figcaption>Collaborative collection — the head-coach host owns the session and shows connected collector state.</figcaption>
+</figure>
+
+<h3>Rankings and lineup guidance</h3>
+<div class="warning"><strong>Decision support, not a rating:</strong> use role, data window, confidence, missing-input explanations, and coaching context together; do not publish the score as an official player rating.</div>
+<p><strong>Player Rankings</strong> compares players within a selected role and data window. The app labels its value a <em>decision-support score—not an official player rating</em> and shows confidence, missing inputs, and explanations. Treat it as one coaching input alongside observation, availability, role fit, and sample size.</p>
+
+
+</section>
+
+<section id="rotation">
+<h2>5. Rotation Manager</h2>
+<p>Rotation Manager helps coaches build, understand, and reuse legal volleyball rotation configurations. It distinguishes the official service order from current on-court occupants and tactical geometry.</p>
+
+<h3>Understanding R1–R6</h3>
+<p>R1 through R6 represent the six rotational service-order states. VolleyInsight may show different tactical phases such as Serve Receive, Serve, and Base/Defense while preserving the underlying legal rotation state.</p>
+
+<figure class="actual-shot" id="shot-rotation-main" data-shot-id="rotation-main" data-filename="11-rotation-manager.png">
+  <img src="screenshots/11-rotation-manager.png" alt="Landscape Rotation Manager with R1 serve receive, court geometry, bench zones, and controls." loading="lazy" decoding="async">
+  <figcaption>Rotation Manager — service order, tactical phase, court occupants, and off-court players remain visible together.</figcaption>
+</figure>
+
+<h3>Serve Receive versus Base</h3>
+<p><strong>Serve Receive</strong> describes how the team organizes to receive serve while remaining legally aligned. <strong>Base/Defense</strong> describes the team's defensive or tactical organization after the first contact. These are not the same formation.</p>
+
+<figure class="actual-shot" id="shot-rotation-receive" data-shot-id="rotation-receive" data-filename="12-rotation-serve-receive.png">
+  <img src="screenshots/12-rotation-serve-receive.png" alt="Landscape Rotation Manager showing the R3 serve-receive arc and movement paths." loading="lazy" decoding="async">
+  <figcaption>Serve Receive — R3 geometry, setter target, passing routes, and current server.</figcaption>
+</figure>
+
+<h3>Player movement and replacements</h3>
+<p>Use the controls available in the current build to reposition players tactically, replace a player, manage substitution pairs, and handle libero replacements. Libero replacement is treated separately from a regular substitution.</p>
+
+<figure class="actual-shot" id="shot-rotation-subs" data-shot-id="rotation-subs" data-filename="13-rotation-substitutions.png">
+  <img src="screenshots/13-rotation-substitutions.png" alt="Substitution Pairs popover showing fixed slots and Libero replacements." loading="lazy" decoding="async">
+  <figcaption>Substitution Pairs — regular substitutions and Libero replacements are modeled separately.</figcaption>
+</figure>
+
+<h3>Duplicate a rotation configuration</h3>
+<p><strong>Duplicate Configuration</strong> preserves the coach's customized geometry in a new independent configuration. Editing the copy does not change the original.</p>
+
+<h3>Preset systems</h3>
+<p>The learning references cover 4-2, 5-1, 6-2, 6-3, and 6-6 systems using the production Rotation Manager. These are educational starting points; no one system is universally best for every roster.</p>
+</section>
+
+<section id="practice">
+<h2>6. Practice &amp; Drills</h2>
+<p><strong>Practice &amp; Drills</strong> combines the Practice Planner, check-in, timed drill execution, a practice time budget, countdown timer, scoreboard, training plans, history, and drill/stretch libraries.</p>
+
+<h3>Plan a practice</h3>
+<ol class="steps">
+<li>Open <strong>Practice &amp; Drills</strong>, then choose <strong>Practice Planner</strong>.</li>
+<li>Select the desired date/time.</li>
+<li>Create a new practice session.</li>
+<li>Add or arrange drill blocks and breaks.</li>
+<li>Review the planned time budget.</li>
+</ol>
+
+<figure class="actual-shot" id="shot-practice-calendar" data-shot-id="practice-calendar" data-filename="14-practice-planner.png">
+  <img src="screenshots/14-practice-planner.png" alt="Defense and Transition Practice plan with date, agenda, and timed training blocks." loading="lazy" decoding="async">
+  <figcaption>Practice Planner — a seeded 85-minute session with editable blocks and breaks.</figcaption>
+</figure>
+
+<h3>Run a practice</h3>
+<p>During practice, the running view shows the current block, elapsed and total time, Pause, time adjustments, Previous Drill, Next Drill, Skip, Players / Check-In, Agenda, and End Practice.</p>
+
+<figure class="actual-shot" id="shot-practice-running" data-shot-id="practice-running" data-filename="15-running-practice.png">
+  <img src="screenshots/15-running-practice.png" alt="Live Dynamic Stretch practice block with timer and courtside controls." loading="lazy" decoding="async">
+  <figcaption>Run Practice — current block, elapsed time, drill navigation, check-in, agenda, and end controls.</figcaption>
+</figure>
+
+<h3>Warm-up / stretch sequence</h3>
+<p>Planned sessions can include a Dynamic Stretch block. If a referenced guided sequence is not installed, the live screen reports <strong>Stretch Sequence Unavailable</strong>; the timer and Previous Drill, Next Drill, Skip, check-in, agenda, and End Practice controls remain available.</p>
+</section>
+
+<section id="tournament">
+<h2>7. Tournament Manager</h2>
+<p>Tournament Manager is designed to prepare a team for competition, connect a selected rotation/lineup to live match operation, and preserve match history.</p>
+
+<h3>Tournament list</h3>
+<p>The opening screen lists active or upcoming tournaments and provides <strong>New Tournament</strong>. Selecting an event opens its competition profile, paperwork standard, match format, notes, and matches.</p>
+
+<figure class="actual-shot" id="shot-tournament-list" data-shot-id="tournament-list" data-filename="16-tournament-manager.png">
+  <img src="screenshots/16-tournament-manager.png" alt="Tournament Manager list with New Tournament and the synthetic Coastal Summer Classic." loading="lazy" decoding="async">
+  <figcaption>Tournament Manager — active or upcoming events and the New Tournament action.</figcaption>
+</figure>
+
+<h3>Create a tournament</h3>
+<p><strong>New Tournament</strong> collects the team, name, date, location, division, notes, competition profile, paperwork standard, and match format. Defaults come from Settings and can be overridden for the event.</p>
+
+
+
+<h3>Edit an existing tournament</h3>
+<p>Existing tournaments can be modified through the available Edit action. Safe event metadata can be updated without replacing the tournament identity. Once live/historical match data exists, structural changes that would reinterpret prior play may be restricted.</p>
+
+<h3>Duplicate a tournament</h3>
+<p>Use <strong>Duplicate Tournament</strong> to reuse event configuration for another team attending the same event. The duplicate should open as a reviewable, prefilled new tournament with a new independent identity and no copied live score/match history.</p>
+
+<figure class="actual-shot" id="shot-tournament-detail" data-shot-id="tournament-detail" data-filename="18-tournament-detail.png">
+  <img src="screenshots/18-tournament-detail.png" alt="Coastal Summer Classic detail with competition profile, paperwork standard, and a match." loading="lazy" decoding="async">
+  <figcaption>Tournament detail — event metadata, rules snapshot, paperwork standard, and match readiness.</figcaption>
+</figure>
+
+<h3>Start competition</h3>
+<p>Before starting a set, verify the team, selected rotation/configuration, starting lineup, libero assignments, and any required competition profile or paperwork settings.</p>
+</section>
+
+<section id="referee">
+<h2>8. Referee Tool</h2>
+<p>The Referee Tool supports standalone scoring/referee workflows and is designed for quick courtside operation.</p>
+
+<h3>Start a set</h3>
+<p>Before the first rally, explicitly select <strong>Receive</strong> or <strong>Serve</strong> in team mode, or choose the starting server in Referee Tool. If the rotation no longer matches the roster, VolleyInsight blocks the start and asks you to refresh the configuration instead of silently using stale personnel.</p>
+
+
+
+<h3>Scoring</h3>
+<p>The Referee Tool shows both scores, a volleyball beside the serving team, the selected starting server, rotations, substitutions, Libero state, timeouts, teaching assistance, recent events, and paperwork actions. Swipe a score up to add a point and down to correct one.</p>
+
+<figure class="actual-shot" id="shot-referee-score" data-shot-id="referee-score" data-filename="20-referee-scoring.png">
+  <img src="screenshots/20-referee-scoring.png" alt="Referee Tool at 0–0 with starting-server selection, service indicator, substitutions, Liberos, and paperwork actions." loading="lazy" decoding="async">
+  <figcaption>Referee Tool — explicit starting server, live score state, team controls, teaching assistance, and event history.</figcaption>
+</figure>
+
+<h3>Side-out behavior</h3>
+<ul>
+<li>If the serving team wins the rally, it keeps serve and does not rotate.</li>
+<li>If the receiving team wins the rally, it gains serve and rotates exactly once.</li>
+</ul>
+
+<h3>End Set</h3>
+<p>Manual <strong>End Set</strong> is an administrative/referee action available at 0–0. Ending at 0–0 does not fabricate a set winner.</p>
+</section>
+
+<section id="paperwork">
+<h2>9. Paperwork</h2>
+<p>VolleyInsight projects its saved match state into paperwork views and PDF exports. The local event record is the app’s source for those projections, but app output is <strong>not itself the legally official match record</strong>.</p>
+
+<h3>Supported document families</h3>
+<p>Installed rule profiles and form packages determine which lineup sheets, scoresheets, Libero-control documents, and compatible form families are available. A “compatible” VolleyInsight template must not be described as an official publication of the named organization.</p>
+
+<h3>Preview and fitting</h3>
+<p>Paperwork views provide document selection, fit controls, and PDF export/share when a matching installed template is available. Verify the selected organization and rules snapshot before relying on the projection courtside.</p>
+
+
+
+<h3>Export</h3>
+<p>Use the Paperwork action in a live set, then the available PDF export/share action. Retain the organization’s required official record separately.</p>
+</section>
+
+<section id="help">
+<h2>10. Help & Learning</h2>
+<p>VolleyInsight includes contextual learning so coaches can discover features without reading the entire manual first.</p>
+
+<h3>Learning Center</h3>
+<p><strong>Learn VolleyInsight</strong> includes Set Up Your Team, Build Your First Rotation, Run a Practice, Understand R1–R6 and Serve Receive, Prepare for a Tournament, Score a Match / Referee a Set, and Develop and Evaluate Players. Progress is informational; tutorials remain replayable.</p>
+
+<figure class="actual-shot" id="shot-learning-center" data-shot-id="learning-center" data-filename="22-learning-center.png">
+  <img src="screenshots/22-learning-center.png" alt="Learn VolleyInsight tutorial catalog and discovery tips." loading="lazy" decoding="async">
+  <figcaption>Learn VolleyInsight — guided workflows are replayable and never block app features.</figcaption>
+</figure>
+
+<h3>In-context help</h3>
+<p>Guided tutorials dim the live screen, spotlight the relevant production control, and keep the underlying screen interactive. Use <strong>Next</strong>, <strong>Back</strong>, <strong>Learn</strong>, <strong>Hide</strong>, or <strong>Exit</strong> from the tutorial card.</p>
+
+<figure class="actual-shot" id="shot-context-help" data-shot-id="context-help" data-filename="23-contextual-help.png">
+  <img src="screenshots/23-contextual-help.png" alt="Tutorial spotlight attached to Manage Teams on the live Main Menu." loading="lazy" decoding="async">
+  <figcaption>Contextual tutorial — a real production control is spotlighted while the screen remains interactive.</figcaption>
+</figure>
+
+<h3>Replay tutorials</h3>
+<p>Completed tutorials remain replayable, and resetting tutorial progress does not change volleyball records.</p>
+</section>
+
+<section id="settings">
+<h2>11. Settings & Data</h2>
+<p>Settings provides access to the Learning Center, Tournament &amp; Competition defaults, Paperwork Standards, and Backup &amp; Restore. The screenshot focuses on the production competition, paperwork, and backup controls.</p>
+
+<figure class="actual-shot" id="shot-settings" data-shot-id="settings" data-filename="24-settings.png">
+  <img src="screenshots/24-settings.png" alt="Settings controls for tournament defaults, paperwork standards, and backup and restore." loading="lazy" decoding="async">
+  <figcaption>Settings — production competition defaults, paperwork packages, and user-initiated backup controls.</figcaption>
+</figure>
+
+<h3>Data protection</h3>
+<p>VolleyInsight is designed so coach-created data is not silently regenerated merely because the UI or roster changes. Historical records should preserve the identity/context needed to interpret them later.</p>
+
+<h3>Backup / restore</h3>
+<p>Use <strong>Open Backup &amp; Restore</strong> to create a portable disaster-recovery export or restore an installation from a compatible backup. Backups are user-initiated; the app does not claim automatic cloud backup.</p>
+</section>
+
+<section id="matchday">
+<h2>12. Suggested Match-Day Workflow</h2>
+<ol class="steps">
+<li>Open the correct Team and confirm the current roster.</li>
+<li>Open Tournament Manager and choose/create the tournament.</li>
+<li>Verify the competition profile and event information.</li>
+<li>Select the intended Rotation Configuration.</li>
+<li>Review the starting lineup and libero assignments.</li>
+<li>Start the set and confirm the first serving team.</li>
+<li>Score rallies and verify side-out/rotation behavior.</li>
+<li>Record substitutions/libero activity through the supported workflow.</li>
+<li>End the set when appropriate.</li>
+<li>Review/export required paperwork.</li>
+<li>Confirm the completed match/tournament record before leaving the venue.</li>
+</ol>
+<div class="tip"><strong>Before a real tournament:</strong> rehearse the full workflow with a synthetic roster and test event so scoring gestures, rotations, substitutions, and paperwork are familiar courtside.</div>
+</section>
+
+<section id="troubleshooting">
+<h2>13. Troubleshooting</h2>
+
+<h3>A newly added roster player is missing from Local Collection</h3>
+<p>Return to the player selector and confirm you are collecting for the correct team. Active collection should resolve new selectable players from the current team roster. If a current player is still missing after returning to the screen, record the exact steps and app version for support.</p>
+
+<h3>A removed player still appears in a picker</h3>
+<p>A player removed from the current team should not be offered for new data collection. Historical observations may still retain that player's identity. If the removed player remains selectable for new work, report it as a roster-synchronization issue.</p>
+
+<h3>I tapped Add Data Card but nothing seemed to happen</h3>
+<p>The Local Collection view should automatically scroll to the newly created Data Card. If it does not, verify whether a new card was actually created and report the device/orientation.</p>
+
+<h3>I cannot see all fields in a popup</h3>
+<p>On smaller screens, multi-field forms may scroll. Look for a bottom fade, down chevron, or other more-content indicator. On iPad, forms should use available vertical space rather than forcing unnecessary scrolling.</p>
+
+<h3>Rotation behavior looks wrong after a side-out</h3>
+<p>Remember: the receiving team rotates only when it wins the rally and gains serve. The serving team does not rotate after winning a rally.</p>
+
+<h3>Paperwork looks shifted or too small</h3>
+<p>Reopen the document and use the available fit/zoom controls. The default preview should center the document and choose an appropriate Fit Page/Fit Width behavior for the device.</p>
+</section>
+
+<section id="privacy">
+<h2>14. Privacy, Support & Version Notes</h2>
+<p>This public manual was verified against the current VolleyInsight target and real iPad simulator renders. Screenshots use only the app’s isolated synthetic documentation dataset.</p>
+
+<div class="warning"><strong>Privacy:</strong> do not include real minors, club records, contact information, private tournament data, or device backups in screenshots sent for support. Reproduce issues with synthetic information whenever possible.</div>
+
+<h3>When requesting support</h3>
+<p>Include the VolleyInsight app version/build, iPhone/iPad model, iOS/iPadOS version, affected team/workflow, and reproducible steps. Screenshots are useful when they contain synthetic/non-sensitive information.</p>
+
+<h3>Manual maintenance</h3>
+<p>The app is the source of truth for this manual. Re-verify control names, screenshots, supported form packages, app version, and OS behavior with each release.</p>
+</section>
+</main>
+</div>
+
+<footer>
+<div class="footer-inner">
+  <strong>VolleyInsight User Manual</strong><br>
+  Public support and developer documentation verified against VolleyInsight 0.1 (build 1).<br>
+  <a href="#top">Back to top</a>
+</div>
+</footer>
+</body>
+</html>
